@@ -8,10 +8,12 @@
 model geojson_loading   
 
 global {
-	file geo_file <- geojson_file("../includes/countries.geojson");
+	file geo_file <- geojson_file("../includes/allZonesComms.geojson");
 	geometry shape <- envelope(geo_file);
 	init {
-		create countries from: geo_file with: [name::read("name")];
+		create countries from: geo_file with: [name::read("Name")]{
+			if (name="New Jersey"){do die;}
+		}
 	}
 } 
 
